@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">nokhbaHMD</string>
+    <string name="title_slpashScreen">نخبة حاسي مسعود</string>
+    <string name="btn_start">ابدأ الآن</string>
+    <string name="first_slide_title">مرحبا</string>
+    <string name="second_slide_title">wxcwxc</string>
+    <string name="third_slide_title">vbnvbnv</string>
+    <string name="forth_slide_title">tyutuyuu</string>
+    <string name="first_desc">
+ بمشاركة الجميع يمكنا السيطرة على فيروس كورونا ومنع انتشاره لتعود الحياة إلى طبيعتها كما كانت من قبل
+    </string>
+    <string name="secound_desc">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry\'s standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+    </string>
+    <string name="rol">قواعد الوقاية والتباعد الاجتماعي</string>
+    <string name="help">طلب مساعدة</string>
+    <string name="help5">اذا كنت مصاب بعدوى كووفيد 19 ومطبق للحجر المنزلي يمكنك طلب خدمة شراء حاجيات البيت</string>
+    <string name="help2">تقديم المساعدة</string>
+    <string name="help3">إستعجالات</string>
+    <string name="help4">من نحن</string>
+    <string name="helpScreen">استمارة طلب المساعدة</string>
+    <string name="fname">الإسم</string>
+    <string name="lname">اللقب</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="sick">هل انت مصاب بفيروس كورونا ؟</string>
+    <string name="sick2">أحد افراد عائلتك مصاب ؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="dr1">استشارة طبيب نفسي</string>
+    <string name="dr">استشارة طبيب</string>
+    <string name="other">إقتناء حاجيات البيت او خدمة اخرى</string>
+    <string name="countsick">عدد المصابين</string>
+    <string name="type">نوع الخدمة</string>
+    <string name="send">أرسل</string>
+    <string name="volunter_screen">استمارة تقديم المساعدة (تطوع)</string>
+    <string name="volunter_title">يمكنك المساهمة في تقديم المساعدة عن طريق ملأ الاستمارة</string>
+    <string name="volunter_type">نوع التطوع ؟</string>
+    <string name="volunter_dr">طبيب نفسي متطوع</string>
+    <string name="volunter_dr1">طبيب متطوع</string>
+    <string name="volunter_simple">متطوع عادي</string>
+    <string name="volunter_money">تبرعات مالية</string>
+    <string name="stay_home">ابقى في المنزل ، احمي نفسك ، احمي عائلتك واحمي المجتمع من حولك</string>
+    <string name="phone_covid">هاتف مصلحة الكوفيد بمستشفى حاسي مسعود</string>
+    <string name="call_now">اتصل الآن </string>
+    <string name="phone_covid_number">0671483234</string>
+</resources>

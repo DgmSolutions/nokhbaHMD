@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:background="@drawable/round_layout">
+
+<ImageView
+    android:id="@+id/home_logo"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:src="@drawable/new_logo"
+    android:layout_alignParentTop="true"
+    android:layout_centerInParent="true"
+    />
+<TextView
+    android:id="@+id/home_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_above="@+id/home_logo"
+    android:text="@string/title_slpashScreen"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:fontFamily="@font/cairo_black"/>
+</RelativeLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <LinearLayout
+            android:id="@+id/rules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:backgroundTint="@color/cardview_light_background"
+            android:gravity="right"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            style="@style/Widget.MaterialComponents.Button"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/cairo"
+                android:text="@string/rol"
+                android:textSize="16sp" />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/protect"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:id="@+id/help_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cardview_light_background"
+                android:padding="15dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                style="@style/Widget.MaterialComponents.Button">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/problem"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/cairo"
+                    android:text="@string/help"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/volunter_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cardview_light_background"
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                style="@style/Widget.MaterialComponents.Button">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/volunteer"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/cairo"
+                    android:text="@string/help2"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/about_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cardview_light_background"
+                android:padding="15dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                style="@style/Widget.MaterialComponents.Button"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/n_logo"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/cairo"
+                    android:text="@string/help4"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/emergency_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cardview_light_background"
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                style="@style/Widget.MaterialComponents.Button"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ambulance"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/cairo"
+                    android:text="@string/help3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
+</LinearLayout>

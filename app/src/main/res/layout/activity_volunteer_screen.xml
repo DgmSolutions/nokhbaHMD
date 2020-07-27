@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="register.VolunteerScreen">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center|left"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginRight="10dp"
+            android:background="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volunter_screen"
+            android:textSize="16sp"
+            android:fontFamily="@font/cairo_black"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cairo_light"
+        android:padding="10dp"
+        android:text="@string/volunter_title"
+        android:textSize="16sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|right"
+            android:hint="@string/fname"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconTint="@color/green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vfname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lname"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            app:startIconTint="@color/green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vlname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
+            app:startIconTint="@color/green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vphone_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dropdown_menu_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_menu_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_layout_gris"
+            android:text="@string/send"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/cairo_black"
+            android:drawableEnd="@drawable/ic_baseline_send_24"
+            android:drawableRight="@drawable/ic_baseline_send_24"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
