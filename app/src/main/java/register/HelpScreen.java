@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -20,6 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.nokhbahmd.R;
+import com.example.nokhbahmd.classes.Datetime;
+import com.example.nokhbahmd.classes.Help;
 import com.example.nokhbahmd.classes.SnackBar;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -31,10 +34,16 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HelpScreen extends AppCompatActivity {
 
@@ -47,6 +56,8 @@ public class HelpScreen extends AppCompatActivity {
     private LinearLayout linear;
     private final int locationRequestCode = 123;
     private static String  pattrenString = "^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$",phonePattren="\\d{10}";
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final String TAG = "HelpScreen";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,9 +74,6 @@ public class HelpScreen extends AppCompatActivity {
         //radio button groupe
         covid_you = (RadioGroup) findViewById(R.id.covid_you);
        covid_family = (RadioGroup) findViewById(R.id.covid_family);
-        //radio button
-
-
         //dropdown
         textInputLayout = findViewById(R.id.dropdown_menu_layout);
         autoCompleteTextView = findViewById(R.id.dropdown_menu_id);
@@ -76,9 +84,22 @@ public class HelpScreen extends AppCompatActivity {
         String[] itmes = new String[]{item1, item2, item3};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(HelpScreen.this, R.layout.dropdown_items, itmes);
         autoCompleteTextView.setAdapter(adapter);
+        covid_number.setEnabled(false);
+        covid_family.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        if(checkedId == R.id.oui){
+                           covid_number.setEnabled(true);
+                        }else if(checkedId == R.id.non){
+                            covid_number.setEnabled(false);
+                        }
+                    }
+                }
+        );
 
-        //Toast.makeText(HelpScreen.this,,Toast.LENGTH_LONG).show();
         btn = findViewById(R.id.send);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,19 +107,30 @@ public class HelpScreen extends AppCompatActivity {
                  String prenom =lname.getText().toString().trim();
                  String phone = phone_number.getText().toString().trim();
                  String cnum=covid_number.getText().toString().trim();
-                 String desc=desc_help.getText().toString().trim();
+                 String desc=desc_help.getText().toString();
+                 desc=desc.replaceAll("( )+", " ");
                 int checked =covid_you.getCheckedRadioButtonId();
                 choix = (RadioButton) findViewById(checked);
                 int check =covid_family.getCheckedRadioButtonId();
                 fchoix = (RadioButton) findViewById(check);
                 String drop =autoCompleteTextView.getText().toString();
-                if(!nom.isEmpty() && !prenom.isEmpty() && !phone.isEmpty() && !cnum.isEmpty() && !desc.isEmpty()){
+                String Ycovide =choix.getText().toString();
+                String Fcovid =fchoix.getText().toString();
+                if(!nom.isEmpty() && !prenom.isEmpty() && !phone.isEmpty() && !desc.isEmpty()){
                      if(!drop.isEmpty()){
                          if(nom.matches(pattrenString)){
                              if(prenom.matches(pattrenString)){
                                  if(phone.matches(phonePattren)){
-                                     //insert
-                                     getCurrentLocation();
+                                     //get localisation and insert data
+                                     switch (fchoix.getId()){
+                                         case R.id.non:
+                                             getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,desc,"0");
+                                             break;
+                                         case R.id.oui:
+                                             getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,desc,cnum);
+                                             break;
+                                     }
+
                                  }else{
                                      new SnackBar().SnackBarMessage(linear,getString(R.string.phoneformat), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
                                  }
@@ -120,22 +152,7 @@ public class HelpScreen extends AppCompatActivity {
                 }
 
 
-              /*  BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(HelpScreen.this).setAnimation(R.raw.sended)
-                        .setTitle("تم الإرسال بنجاح")
-                        .setMessage("ستقوم النخبة بالاتصال بك في أقرب وقت")
-                        .setCancelable(true)
-                        .setPositiveButton("حسنا", new MaterialDialog.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int which) {
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .build();
-                LottieAnimationView animationView = mDialog.getAnimationView();
-                animationView.setPadding(100, 100, 100, 100);
-                animationView.loop(false);
-                // Show Dialog
-                mDialog.show();*/
+
             }
         });
 
@@ -150,7 +167,7 @@ public class HelpScreen extends AppCompatActivity {
     }
 
     //get location method
-    private void getCurrentLocation(){
+    private void getCurrentLocation(String n,String p,String h,String yc,String fc,String drop,String d ,String cnum){
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
@@ -174,6 +191,11 @@ public class HelpScreen extends AppCompatActivity {
                                 double latitude = locationResult.getLocations().get(index).getLatitude();
                                 double longtitude = locationResult.getLocations().get(index).getLongitude();
                                Toast.makeText(HelpScreen.this,latitude +" "+longtitude,Toast.LENGTH_LONG).show();
+                                Map<String, Double> localisation = new HashMap<>();
+                                localisation.put("latitude",latitude);
+                                localisation.put("longtitude",longtitude);
+                                Help help =new Help(n,p,h,yc,fc,drop,d,Integer.parseInt(cnum),Datetime.getDateTime(),localisation);
+                               SaveData(help);
                             }
 
                         }
@@ -221,5 +243,21 @@ public class HelpScreen extends AppCompatActivity {
                 }
             }
         });
+    }//end enbleGPS
+    private void SaveData(Help help){
+        db.collection("Help").document(help.getPhone()).set(help)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                   Toast.makeText(HelpScreen.this,"saved",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                new SnackBar().SnackBarMessage(linear,getString(R.string.errorMssg), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
+                Log.d(TAG,e.getMessage());
+            }
+        });
+
     }
 }

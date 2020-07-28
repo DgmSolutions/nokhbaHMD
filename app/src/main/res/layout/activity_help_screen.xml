@@ -135,7 +135,7 @@
                     android:id="@+id/covid_you"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -165,7 +165,7 @@
                     android:id="@+id/covid_family"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:orientation="horizontal">
 
                     <RadioButton
