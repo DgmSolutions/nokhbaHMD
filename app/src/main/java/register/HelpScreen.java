@@ -61,14 +61,14 @@ public class HelpScreen extends AppCompatActivity {
         covid_number = findViewById(R.id.covid_num);
         desc_help = findViewById(R.id.desc_help);
         //radio button groupe
-        covid_you = (RadioRealButtonGroup) findViewById(R.id.covid_you);
-        covid_family = (RadioRealButtonGroup) findViewById(R.id.covid_family);
+     //   covid_you = (RadioRealButtonGroup) findViewById(R.id.covid_you);
+       // covid_family = (RadioRealButtonGroup) findViewById(R.id.covid_family);
         //radio button
-        c_yes = (RadioRealButton) findViewById(R.id.c_yes);
+       /* c_yes = (RadioRealButton) findViewById(R.id.c_yes);
         c_no = (RadioRealButton) findViewById(R.id.c_no);
         f_yes = (RadioRealButton) findViewById(R.id.f_yes);
         f_no = (RadioRealButton) findViewById(R.id.f_no);
-
+*/
         //Get Localisation
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         //check Android Version

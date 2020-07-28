@@ -19,9 +19,9 @@ public class VolunteerScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_screen);
         //input text
-        vfname = findViewById(R.id.vfname);
-        vlname = findViewById(R.id.vlname);
-        vphone_number = findViewById(R.id.vphone_number);
+//        vfname = findViewById(R.id.vfname);
+  //      vlname = findViewById(R.id.vlname);
+    //    vphone_number = findViewById(R.id.vphone_number);
 
 
 
