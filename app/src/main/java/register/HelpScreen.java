@@ -48,6 +48,8 @@ public class HelpScreen extends AppCompatActivity {
     private RadioRealButton c_yes,c_no,f_yes,f_no;
     private Button btn;
     final String permissionToFineLocation = Manifest.permission.ACCESS_FINE_LOCATION;
+    final String permissionToCoarseLocation = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private final int REQUEST_CODE = 2;
     FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
@@ -80,7 +82,8 @@ public class HelpScreen extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                    if (ActivityCompat.checkSelfPermission(HelpScreen.this, permissionToFineLocation) == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(HelpScreen.this, permissionToFineLocation) == PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(HelpScreen.this,permissionToCoarseLocation) == PackageManager.PERMISSION_GRANTED) {
                         //Get Location
                         getLocation();
                     } else {
@@ -133,7 +136,7 @@ public class HelpScreen extends AppCompatActivity {
                     .setPositiveButton("حسنا", new MaterialDialog.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
-                            ActivityCompat.requestPermissions(HelpScreen.this, new String[]{permissionToFineLocation}, 2);
+                            ActivityCompat.requestPermissions(HelpScreen.this, new String[]{permissionToFineLocation,permissionToCoarseLocation}, 2);
                             dialogInterface.dismiss();
                         }
                     })
@@ -143,11 +146,20 @@ public class HelpScreen extends AppCompatActivity {
             // Show Dialog
             mDialog.show();
         }else{
-            ActivityCompat.requestPermissions(this, new String[]{permissionToFineLocation}, 2);
+            ActivityCompat.requestPermissions(this, new String[]{permissionToFineLocation,permissionToCoarseLocation}, REQUEST_CODE);
         }
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case REQUEST_CODE:
+                if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    getLocation();
+                    return;
+        }
+    }
 
     //get location method
     @SuppressLint("MissingPermission")
@@ -166,7 +178,7 @@ public class HelpScreen extends AppCompatActivity {
                         //Initialize adresse list
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                         // show countryName
-                        Toast.makeText(HelpScreen.this, addresses.get(0).getCountryName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HelpScreen.this, addresses.get(0).getCountryName()+addresses.get(0).getLocality(), Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

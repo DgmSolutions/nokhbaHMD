@@ -8,12 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.example.nokhbahmd.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class VolunteerScreen extends AppCompatActivity {
     private TextInputLayout textInputLayout;
     private AutoCompleteTextView autoCompleteTextView;
-    private  TextInputLayout vfname,vlname,vphone_number;
+    private TextInputEditText vfname,vlname,vphone_number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

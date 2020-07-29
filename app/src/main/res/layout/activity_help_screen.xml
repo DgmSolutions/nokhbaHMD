@@ -149,7 +149,9 @@
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
                         app:rrb_text="@string/yes"
-                        app:rrb_textColor="@color/black" />
+                        app:rrb_textColor="@color/black"
+                        android:clipChildren="false"
+                        />
 
                     <co.ceryle.radiorealbutton.RadioRealButton
                         android:id="@+id/c_no"
