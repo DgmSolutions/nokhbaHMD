@@ -41,7 +41,9 @@
         android:padding="10dp"
         android:text="@string/volunter_title"
         android:textSize="16sp" />
+
     <LinearLayout
+        android:id="@+id/vlinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -121,16 +123,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/vsend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@drawable/round_layout_gris"
-            android:text="@string/send"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/cairo_black"
             android:drawableEnd="@drawable/ic_baseline_send_24"
-            android:drawableRight="@drawable/ic_baseline_send_24"/>
+            android:drawableRight="@drawable/ic_baseline_send_24"
+            android:fontFamily="@font/cairo_black"
+            android:text="@string/send"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

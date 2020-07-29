@@ -56,6 +56,7 @@
                 android:textSize="16sp" />
 
             <LinearLayout
+                android:id="@+id/vlinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -130,39 +131,26 @@
                     android:text="@string/sick"
                     android:textSize="12sp" />
 
-                <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                <RadioGroup
                     android:id="@+id/covid_you"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:rrbg_animateDrawables_enter="overshoot"
-                    app:rrbg_animateTexts_enter="overshoot"
-                    app:rrbg_dividerColor="@color/black"
-                    app:rrbg_dividerSize="1dp"
-                    app:rrbg_radius="10dp"
-                    app:rrbg_selectorColor="@color/green"
-                    app:rrbg_selectorSize="6dp">
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
-                    <co.ceryle.radiorealbutton.RadioRealButton
-                        android:id="@+id/c_yes"
+                    <RadioButton
+                        android:id="@+id/no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:rrb_ripple="true"
-                        app:rrb_rippleColor="@color/black"
-                        app:rrb_text="@string/yes"
-                        app:rrb_textColor="@color/black"
-                        android:clipChildren="false"
-                        />
+                        android:checked="true"
+                        android:text="@string/no" />
 
-                    <co.ceryle.radiorealbutton.RadioRealButton
-                        android:id="@+id/c_no"
+                    <RadioButton
+                        android:id="@+id/yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:rrb_checked="true"
-                        app:rrb_ripple="true"
-                        app:rrb_rippleColor="@color/black"
-                        app:rrb_text="@string/no"
-                        app:rrb_textColor="@color/black" />
-                </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+                        android:text="@string/yes" />
+                </RadioGroup>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -173,47 +161,36 @@
                     android:text="@string/sick2"
                     android:textSize="12sp" />
 
-                <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                <RadioGroup
                     android:id="@+id/covid_family"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:rrbg_animateDrawables_enter="overshoot"
-                    app:rrbg_animateTexts_enter="overshoot"
-                    app:rrbg_dividerColor="@color/black"
-                    app:rrbg_dividerSize="1dp"
-                    app:rrbg_radius="10dp"
-                    app:rrbg_selectorColor="@color/green"
-                    app:rrbg_selectorSize="6dp">
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
-                    <co.ceryle.radiorealbutton.RadioRealButton
-                        android:id="@+id/f_yes"
+                    <RadioButton
+                        android:id="@+id/non"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:rrb_ripple="true"
-                        app:rrb_rippleColor="@color/black"
-                        app:rrb_text="@string/yes"
-                        app:rrb_textColor="@color/black" />
+                        android:checked="true"
+                        android:text="@string/no" />
 
-                    <co.ceryle.radiorealbutton.RadioRealButton
-                        android:id="@+id/f_no"
+                    <RadioButton
+                        android:id="@+id/oui"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:rrb_checked="true"
-                        app:rrb_ripple="true"
-                        app:rrb_rippleColor="@color/black"
-                        app:rrb_text="@string/no"
-                        app:rrb_textColor="@color/black" />
-                </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+                        android:text="@string/yes" />
+                </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:hint="@string/countsick"
                     app:boxStrokeColor="@color/black"
                     app:boxStrokeWidthFocused="2dp"
                     app:endIconMode="clear_text"
-                    android:layout_marginTop="5dp"
                     app:startIconDrawable="@drawable/ic_baseline_plus_one_24"
                     app:startIconTint="@color/green">
 
@@ -240,6 +217,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -258,7 +236,7 @@
                         android:hint="اكتب احتياجك هنا"
                         android:inputType="textMultiLine"
                         android:scrollbars="vertical"
-                        android:verticalScrollbarPosition="left"/>
+                        android:verticalScrollbarPosition="left" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -267,12 +245,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/round_layout_gris"
-                    android:text="@string/send"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/cairo_black"
                     android:drawableEnd="@drawable/ic_baseline_send_24"
-                    android:drawableRight="@drawable/ic_baseline_send_24"/>
+                    android:drawableRight="@drawable/ic_baseline_send_24"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/send"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
