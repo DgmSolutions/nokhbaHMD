@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
@@ -20,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.nokhbahmd.R;
 import com.example.nokhbahmd.classes.Datetime;
 import com.example.nokhbahmd.classes.Help;
@@ -41,9 +43,13 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
+import com.shreyaspatil.MaterialDialog.MaterialDialog;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.nokhbahmd.classes.DialogAlert.ShowEndDialog;
 
 public class HelpScreen extends AppCompatActivity {
 
@@ -190,7 +196,6 @@ public class HelpScreen extends AppCompatActivity {
                                 int index = locationResult.getLocations().size() - 1;
                                 double latitude = locationResult.getLocations().get(index).getLatitude();
                                 double longtitude = locationResult.getLocations().get(index).getLongitude();
-                               Toast.makeText(HelpScreen.this,latitude +" "+longtitude,Toast.LENGTH_LONG).show();
                                 Map<String, Double> localisation = new HashMap<>();
                                 localisation.put("latitude",latitude);
                                 localisation.put("longtitude",longtitude);
@@ -244,20 +249,20 @@ public class HelpScreen extends AppCompatActivity {
             }
         });
     }//end enbleGPS
-    private void SaveData(Help help){
+    private void SaveData(Help help) {
         db.collection("Help").document(help.getPhone()).set(help)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                   Toast.makeText(HelpScreen.this,"saved",Toast.LENGTH_LONG).show();
+                        ShowEndDialog(HelpScreen.this);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                new SnackBar().SnackBarMessage(linear,getString(R.string.errorMssg), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
-                Log.d(TAG,e.getMessage());
+                new SnackBar().SnackBarMessage(linear, getString(R.string.errorMssg), Snackbar.LENGTH_SHORT, getResources().getColor(R.color.Eblack));
+                Log.d(TAG, e.getMessage());
             }
         });
 
-    }
+    }//end seve data
 }

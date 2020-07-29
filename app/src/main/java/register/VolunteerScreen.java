@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -17,8 +18,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.nokhbahmd.R;
+import com.example.nokhbahmd.classes.Datetime;
+import com.example.nokhbahmd.classes.Help;
 import com.example.nokhbahmd.classes.SnackBar;
+import com.example.nokhbahmd.classes.Valunteer;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationCallback;
@@ -29,10 +34,17 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
+import com.shreyaspatil.MaterialDialog.MaterialDialog;
+
+import static com.example.nokhbahmd.classes.DialogAlert.ShowEndDialog;
 
 public class VolunteerScreen extends AppCompatActivity {
     private TextInputLayout textInputLayout;
@@ -40,13 +52,14 @@ public class VolunteerScreen extends AppCompatActivity {
     private TextInputEditText vfname,vlname,vphone_number;
     private LinearLayout linear;
     private Button send;
-    private int   locationRequestCode=123;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final String TAG = "VolunteerScreen";
     private static String  pattrenString = "^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$",phonePattren="\\d{10}";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_screen);
-        EnableGps();
+
         //input text
         vfname = findViewById(R.id.vfname);
        vlname = findViewById(R.id.vlname);
@@ -75,7 +88,8 @@ public class VolunteerScreen extends AppCompatActivity {
                           if(prenom.matches(pattrenString)){
                               if(phone.matches(phonePattren)){
                                   if(!drop.isEmpty()){
-
+                                     Valunteer valunteer=new Valunteer(nom,prenom,phone,drop, Datetime.getDateTime());
+                                     SaveData(valunteer);
                                   }else {
                                       new SnackBar().SnackBarMessage(linear,getString(R.string.serviceType), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
                                   }
@@ -92,7 +106,7 @@ public class VolunteerScreen extends AppCompatActivity {
                   }else {
                       new SnackBar().SnackBarMessage(linear,getString(R.string.champ), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
                   }
-               getCurrentLocation();
+
               }
           });
         findViewById(R.id.back_arrow).setOnClickListener(new View.OnClickListener() {
@@ -103,76 +117,22 @@ public class VolunteerScreen extends AppCompatActivity {
         });
 
     }
-    private void getCurrentLocation(){
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    locationRequestCode);
-        } else {
-            LocationServices.getFusedLocationProviderClient(this).requestLocationUpdates(locationRequest,
-                    new LocationCallback() {
-                        @Override
-                        public void onLocationResult(LocationResult locationResult) {
-                            super.onLocationResult(locationResult);
-                            LocationServices.getFusedLocationProviderClient(VolunteerScreen.this)
-                                    .removeLocationUpdates(this);
-                            LocationManager lm =(LocationManager)VolunteerScreen.this.getSystemService(LOCATION_SERVICE);
 
-                            if (locationResult != null && locationResult.getLocations().size() > 0) {
-                                int index = locationResult.getLocations().size() - 1;
-                                double latitude = locationResult.getLocations().get(index).getLatitude();
-                                double longtitude = locationResult.getLocations().get(index).getLongitude();
-                                Toast.makeText(VolunteerScreen.this,latitude +" "+longtitude,Toast.LENGTH_LONG).show();
-                            }
-
-                        }
-                    }, Looper.getMainLooper());
-
-        }
-    }
-    private void EnableGps() {
-
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(locationRequest);
-        Task<LocationSettingsResponse> result =
-                LocationServices.getSettingsClient(this).checkLocationSettings(builder.build());
-        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
-            @Override
-            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
-                try {
-                    task.getResult(ApiException.class);
-                } catch (ApiException e) {
-                    switch (e.getStatusCode()) {
-                        case LocationSettingsStatusCodes
-                                .RESOLUTION_REQUIRED:
-                            try {
-                                ResolvableApiException r = (ResolvableApiException) e;
-
-                                r.startResolutionForResult(VolunteerScreen.this, locationRequestCode);
-
-
-                            } catch (IntentSender.SendIntentException s) {
-                                s.printStackTrace();
-                            } catch (ClassCastException ex) {
-                                ex.printStackTrace();
-                            }
-                            break;
-                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-
-                            break;
-
-
+    private void SaveData(Valunteer valunteer){
+        db.collection("Volunteer").document(valunteer.getPhone()).set(valunteer)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        ShowEndDialog(VolunteerScreen.this);
                     }
-                }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                new SnackBar().SnackBarMessage(linear,getString(R.string.errorMssg), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
+                Log.d(TAG,e.getMessage());
             }
         });
+
     }
+
 }
