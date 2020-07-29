@@ -49,6 +49,8 @@ import com.shreyaspatil.MaterialDialog.MaterialDialog;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.nokhbahmd.classes.CheckConx.isConnected;
+import static com.example.nokhbahmd.classes.CheckConx.ping;
 import static com.example.nokhbahmd.classes.DialogAlert.ShowEndDialog;
 
 public class HelpScreen extends AppCompatActivity {
@@ -122,20 +124,23 @@ public class HelpScreen extends AppCompatActivity {
                 String drop =autoCompleteTextView.getText().toString();
                 String Ycovide =choix.getText().toString();
                 String Fcovid =fchoix.getText().toString();
+
+                if(isConnected(HelpScreen.this) == true ) {
                 if(!nom.isEmpty() && !prenom.isEmpty() && !phone.isEmpty() && !desc.isEmpty()){
                      if(!drop.isEmpty()){
                          if(nom.matches(pattrenString)){
                              if(prenom.matches(pattrenString)){
                                  if(phone.matches(phonePattren)){
-                                     //get localisation and insert data
-                                     switch (fchoix.getId()){
-                                         case R.id.non:
-                                             getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,desc,"0");
-                                             break;
-                                         case R.id.oui:
-                                             getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,desc,cnum);
-                                             break;
-                                     }
+
+                                         //get localisation and insert data
+                                         switch (fchoix.getId()) {
+                                             case R.id.non:
+                                                 getCurrentLocation(nom, prenom, phone, Ycovide, Fcovid, drop, desc, "0");
+                                                 break;
+                                             case R.id.oui:
+                                                 getCurrentLocation(nom, prenom, phone, Ycovide, Fcovid, drop, desc, cnum);
+                                                 break;
+                                         }
 
                                  }else{
                                      new SnackBar().SnackBarMessage(linear,getString(R.string.phoneformat), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
@@ -155,6 +160,9 @@ public class HelpScreen extends AppCompatActivity {
                      }
                 }else{
                  new SnackBar().SnackBarMessage(linear,getString(R.string.champ), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
+                }
+                }else{
+                    new SnackBar().SnackBarMessage(linear,getString(R.string.checkConx), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
                 }
 
 

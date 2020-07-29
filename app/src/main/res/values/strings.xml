@@ -52,4 +52,5 @@
     <string name="phoneformat">رقم الهاتف غير صالح</string>
     <string name="serviceType">يرجى تحديد نوع الخدمة</string>
     <string name="errorMssg">حدث خطأ يرجى المحاولة مرة أخرى</string>
+    <string name="checkConx">يرجى التحقق من اتصال الإنترنت الخاص بك من فضلك</string>
 </resources>

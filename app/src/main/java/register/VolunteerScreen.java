@@ -44,6 +44,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import com.shreyaspatil.MaterialDialog.MaterialDialog;
 
+import static com.example.nokhbahmd.classes.CheckConx.isConnected;
+import static com.example.nokhbahmd.classes.CheckConx.ping;
 import static com.example.nokhbahmd.classes.DialogAlert.ShowEndDialog;
 
 public class VolunteerScreen extends AppCompatActivity {
@@ -83,13 +85,16 @@ public class VolunteerScreen extends AppCompatActivity {
                   String prenom=vlname.getText().toString().trim();
                   String phone=vphone_number.getText().toString().trim();
                   String drop =autoCompleteTextView.getText().toString();
+                  if(isConnected(VolunteerScreen.this) == true) {
                   if(!nom.isEmpty() && !prenom.isEmpty() && !phone.isEmpty()){
                       if(nom.matches(pattrenString)){
                           if(prenom.matches(pattrenString)){
                               if(phone.matches(phonePattren)){
                                   if(!drop.isEmpty()){
-                                     Valunteer valunteer=new Valunteer(nom,prenom,phone,drop, Datetime.getDateTime());
-                                     SaveData(valunteer);
+
+                                          Valunteer valunteer = new Valunteer(nom, prenom, phone, drop, Datetime.getDateTime());
+                                          SaveData(valunteer);
+
                                   }else {
                                       new SnackBar().SnackBarMessage(linear,getString(R.string.serviceType), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
                                   }
@@ -105,6 +110,9 @@ public class VolunteerScreen extends AppCompatActivity {
                       }
                   }else {
                       new SnackBar().SnackBarMessage(linear,getString(R.string.champ), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
+                  }
+                  }else {
+                      new SnackBar().SnackBarMessage(linear,getString(R.string.checkConx), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
                   }
 
               }
