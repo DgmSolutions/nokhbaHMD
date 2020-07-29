@@ -1,19 +1,22 @@
 <resources>
     <string name="app_name">nokhbaHMD</string>
     <string name="title_slpashScreen">نخبة حاسي مسعود</string>
-    <string name="btn_start">ابدأ الآن</string>
+    <string name="btn_start">سجل من هنا</string>
     <string name="first_slide_title">مرحبا</string>
-    <string name="second_slide_title">wxcwxc</string>
-    <string name="third_slide_title">vbnvbnv</string>
-    <string name="forth_slide_title">tyutuyuu</string>
+    <string name="second_slide_title">غسل اليدين</string>
+    <string name="third_slide_title">إرتداء القناع الواقي</string>
+    <string name="forth_slide_title">نخبة حاسي مسعود</string>
     <string name="first_desc">
  بمشاركة الجميع يمكنا السيطرة على فيروس كورونا ومنع انتشاره لتعود الحياة إلى طبيعتها كما كانت من قبل
     </string>
     <string name="secound_desc">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry\'s standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-    </string>
+نحثكم على غسل اليدين بشكل دوري و إستعمال الغسول الهيدروكحولي في حالة عدم توفر الصابون، حافظوا على النظافة الشخصية والعامة    </string>
+   <string name="third_desc">
+      إرتداء القناع الواقي يساهم بشكل فعّال في حمايتكم من الإصابة بالعدوى و يحد من إنتشار الفيروس في الأوساط و المجتمعات
+   </string>
+   <string name="forth_desc">نخبة حاسي مسعود تحثكم على البقاء في المنزل،
+اذا كنتم بحاجة للمساعدة في شراء حاجيات البيت، الدواء أو استشارة الطبيب، نحن في خدمتكم طوال فترة الحجر الصحي.
+   </string>
     <string name="rol">قواعد الوقاية والتباعد الاجتماعي</string>
     <string name="help">طلب مساعدة</string>
     <string name="help5">اذا كنت مصاب بعدوى كووفيد 19 ومطبق للحجر المنزلي يمكنك طلب خدمة شراء حاجيات البيت</string>

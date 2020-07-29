@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -28,6 +30,7 @@ import com.example.nokhbahmd.classes.Help;
 import com.example.nokhbahmd.classes.SnackBar;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.internal.ServiceSpecificExtraArgs;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -64,6 +67,7 @@ public class HelpScreen extends AppCompatActivity {
     private static String  pattrenString = "^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$",phonePattren="\\d{10}";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "HelpScreen";
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +113,7 @@ public class HelpScreen extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                  String nom = fname.getText().toString().trim();
                  String prenom =lname.getText().toString().trim();
                  String phone = phone_number.getText().toString().trim();
@@ -127,6 +132,11 @@ public class HelpScreen extends AppCompatActivity {
                          if(nom.matches(pattrenString)){
                              if(prenom.matches(pattrenString)){
                                  if(phone.matches(phonePattren)){
+
+                                     progressDialog = new ProgressDialog(HelpScreen.this);
+                                     progressDialog.setCancelable(false);
+                                     progressDialog.setMessage("يرجى الانتظار ...");
+                                     progressDialog.show();
                                      //get localisation and insert data
                                      switch (fchoix.getId()){
                                          case R.id.non:
@@ -255,6 +265,7 @@ public class HelpScreen extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         ShowEndDialog(HelpScreen.this);
+                        progressDialog.dismiss();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

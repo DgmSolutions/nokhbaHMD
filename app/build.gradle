@@ -44,8 +44,6 @@ dependencies {
 
     //Lottie airbnb
     implementation "com.airbnb.android:lottie:3.4.1"
-    //radiobutton
-    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
     // Material Dialog Library
     implementation 'com.shreyaspatil:MaterialDialog:2.1'
     //permission

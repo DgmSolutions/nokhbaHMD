@@ -24,9 +24,9 @@ public class SliderAdapter extends PagerAdapter {
 
     int images[] = {
             R.raw.slide_avatars,
-            R.raw.virus_loader,
-            R.raw.virus_loader,
-            R.raw.virus_loader,
+            R.raw.handwach,
+            R.raw.mask,
+            R.raw.stay_home,
 
     };
 
@@ -41,8 +41,8 @@ public class SliderAdapter extends PagerAdapter {
 
             R.string.first_desc,
             R.string.secound_desc,
-            R.string.secound_desc,
-            R.string.secound_desc,
+            R.string.third_desc,
+            R.string.forth_desc,
     };
 
     @Override

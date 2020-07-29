@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
@@ -55,6 +56,8 @@ public class VolunteerScreen extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "VolunteerScreen";
     private static String  pattrenString = "^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$",phonePattren="\\d{10}";
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +91,10 @@ public class VolunteerScreen extends AppCompatActivity {
                           if(prenom.matches(pattrenString)){
                               if(phone.matches(phonePattren)){
                                   if(!drop.isEmpty()){
+                                      progressDialog = new ProgressDialog(VolunteerScreen.this);
+                                      progressDialog.setCancelable(false);
+                                      progressDialog.setMessage("يرجى الانتظار ...");
+                                      progressDialog.show();
                                      Valunteer valunteer=new Valunteer(nom,prenom,phone,drop, Datetime.getDateTime());
                                      SaveData(valunteer);
                                   }else {
@@ -124,6 +131,7 @@ public class VolunteerScreen extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         ShowEndDialog(VolunteerScreen.this);
+                        progressDialog.dismiss();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

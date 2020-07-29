@@ -63,26 +63,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:text="@string/call_now"
+        android:text="رقم الهاتف"
         android:fontFamily="@font/cairo_black"
         android:paddingRight="30dp"/>
-    <LinearLayout
-        android:id="@+id/call_covid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:backgroundTint="@color/cardview_light_background"
-        android:gravity="center"
-        style="@style/Widget.MaterialComponents.Button">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_baseline_local_phone_24"/>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="40dp"
-            android:text="0671483234"/>
-    </LinearLayout>
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="0671483234"
+            android:background="@drawable/round_layout_gris"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+    <Button
+        android:id="@+id/call_now_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_baseline_local_phone_24"
+        android:drawableTint="@color/white"
+        android:text="@string/call_now"
+        android:fontFamily="@font/cairo_black"
+        android:textSize="20sp"/>
+</LinearLayout>
 
 </LinearLayout>

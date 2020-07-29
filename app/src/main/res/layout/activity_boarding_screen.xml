@@ -9,10 +9,11 @@
     android:padding="10dp">
 
     <androidx.viewpager.widget.ViewPager
-        android:layout_marginTop="40dp"
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toTopOf="@+id/dot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="horizontal"
+        android:gravity="bottom"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,6 +50,7 @@
             android:background="@color/green"
             android:text="@string/btn_start"
             android:textSize="18dp"
+            android:fontFamily="@font/cairo"
             android:textColor="@color/white"
             android:visibility="invisible"
             android:onClick="start"/>

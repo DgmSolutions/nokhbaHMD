@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.nokhbahmd.R;
@@ -17,15 +18,16 @@ import com.example.nokhbahmd.R;
 public class EmergencyScreen extends AppCompatActivity {
     final String permissionToCall = Manifest.permission.CALL_PHONE;
     private static Intent phoneCallIntent;
+    private Button call_now;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_screen);
+    call_now = findViewById(R.id.call_now_id);
 
 
-
-        findViewById(R.id.call_covid).setOnClickListener(new View.OnClickListener() {
+        call_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
