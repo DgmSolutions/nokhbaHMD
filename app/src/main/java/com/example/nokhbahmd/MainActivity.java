@@ -68,6 +68,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        findViewById(R.id.dev).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialDialog mDialog = new MaterialDialog.Builder(MainActivity.this).setAnimation(R.raw.dev)
+                        .setTitle("AllSoftGrp")
+                        .setMessage("Developed & Designed By \n  Aouiche redouane & Mourad chibane")
+                        .setCancelable(true)
+                        .setPositiveButton("Thank You", new MaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .build();
+                LottieAnimationView animationView = mDialog.getAnimationView();
+                animationView.setPadding(200,200,200,200);
+                animationView.loop(true);
+                // Show Dialog
+                mDialog.show();
+            }
+        });
+
 
 
     }

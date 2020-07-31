@@ -48,11 +48,13 @@
     <string name="phone_covid">هاتف مصلحة الكوفيد بمستشفى حاسي مسعود</string>
     <string name="call_now">اتصل الآن </string>
     <string name="phone_covid_number">0671483234</string>
-    <string name="mssg_localisation">يحتاج هذا التطبيق للوصول إلى موقعك لمعرفة مكانك.</string>
-    <string name="champ">أحد الحقول فارغ ، يرجى التحقق من النموذج مرة أخرى</string>
-    <string name="prenomformat"> الاسم غير صالح</string>
-    <string name="nomformat">اللقب غير صالح</string>
-    <string name="phoneformat">رقم الهاتف غير صالح</string>
+    <string name="mssg_localisation">يحتاج هذا التطبيق الى خدمة تحديد المواقع حتى يعمل بشكل أفضل</string>
+    <string name="champ">أحد الحقول فارغ ، يرجى التحقق من جميع الحقول</string>
+    <string name="prenomformat"> الاسم غير صحيح</string>
+    <string name="nomformat">اللقب غير صحيح</string>
+    <string name="phoneformat">رقم الهاتف غير صحيح</string>
     <string name="serviceType">يرجى تحديد نوع الخدمة</string>
     <string name="errorMssg">حدث خطأ يرجى المحاولة مرة أخرى</string>
+    <string name="dev_info">معلومات عن المطور </string>
+    <string name="about_us">من نحن</string>
 </resources>

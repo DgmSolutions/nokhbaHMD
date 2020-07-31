@@ -135,21 +135,29 @@
                     android:id="@+id/covid_you"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="right"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="@string/no" />
-
+                    android:orientation="horizontal"
+                    android:gravity="right">
                     <RadioButton
                         android:id="@+id/yes"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
+                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="@string/yes" />
+                        android:text="@string/yes"
+                        android:button="@android:color/transparent"
+                        android:textColor="@color/black"
+                        android:background="@drawable/radio_button_left_selector"/>
+                    <RadioButton
+                        android:id="@+id/no"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:button="@android:color/transparent"
+                        android:textColor="@color/black"
+                        android:background="@drawable/radio_button_right_selector"
+                        android:text="@string/no" />
+
+
                 </RadioGroup>
 
                 <TextView
@@ -167,19 +175,27 @@
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/non"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="@string/no" />
-
                     <RadioButton
                         android:id="@+id/oui"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/yes" />
+                        android:button="@android:color/transparent"
+                        android:gravity="center"
+                        android:text="@string/yes"
+                        android:textColor="@color/black"
+                        android:background="@drawable/radio_button_left_selector"/>
+                    <RadioButton
+                        android:id="@+id/non"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:button="@android:color/transparent"
+                        android:gravity="center"
+                        android:text="@string/no"
+                        android:textColor="@color/black"
+                        android:background="@drawable/radio_button_right_selector"/>
+
+
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
