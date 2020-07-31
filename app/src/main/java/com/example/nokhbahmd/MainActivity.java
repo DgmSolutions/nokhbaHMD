@@ -6,11 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import com.shreyaspatil.MaterialDialog.MaterialDialog;
 import com.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         PermissionLocation();
         findViewById(R.id.help_id).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
-    private void PermissionLocation() {
+   public void PermissionLocation() {
         if (hasLocation()) {
 
             //  getCurrentLocation();
@@ -145,4 +152,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
     }
+
+
 }

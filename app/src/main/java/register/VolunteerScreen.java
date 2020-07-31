@@ -2,14 +2,8 @@ package register;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.content.IntentSender;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,34 +12,30 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
+import com.example.nokhbahmd.Model.Data;
+import com.example.nokhbahmd.Model.Notification;
+import com.example.nokhbahmd.Model.Users;
+import com.example.nokhbahmd.Notifications.Api;
+import com.example.nokhbahmd.Notifications.Service;
+import com.example.nokhbahmd.Notifications.respance;
 import com.example.nokhbahmd.R;
 import com.example.nokhbahmd.classes.Datetime;
-import com.example.nokhbahmd.classes.Help;
 import com.example.nokhbahmd.classes.SnackBar;
-import com.example.nokhbahmd.classes.Valunteer;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.nokhbahmd.Model.Valunteer;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
-import com.shreyaspatil.MaterialDialog.MaterialDialog;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.nokhbahmd.classes.CheckConx.isConnected;
-import static com.example.nokhbahmd.classes.CheckConx.ping;
 import static com.example.nokhbahmd.classes.DialogAlert.ShowEndDialog;
 
 public class VolunteerScreen extends AppCompatActivity {
@@ -56,7 +46,7 @@ public class VolunteerScreen extends AppCompatActivity {
     private Button send;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "VolunteerScreen";
-    private static String  pattrenString = "^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$",phonePattren="\\d{10}";
+    private static String  pattrenString = "^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$",phonePattren="\\d{10}",arabicPatren="^[\\u0621-\\u064A\\u0660-\\u0669 ]+$";;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,8 +77,8 @@ public class VolunteerScreen extends AppCompatActivity {
                   String drop =autoCompleteTextView.getText().toString();
                   if(isConnected(VolunteerScreen.this) == true) {
                   if(!nom.isEmpty() && !prenom.isEmpty() && !phone.isEmpty()){
-                      if(nom.matches(pattrenString)){
-                          if(prenom.matches(pattrenString)){
+                      if(nom.matches(pattrenString)  || prenom.matches(arabicPatren)){
+                          if(prenom.matches(pattrenString)  || prenom.matches(arabicPatren)){
                               if(phone.matches(phonePattren)){
                                   if(!drop.isEmpty()){
 
@@ -131,7 +121,7 @@ public class VolunteerScreen extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        ShowEndDialog(VolunteerScreen.this);
+                        pushNotification(valunteer.getService());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -142,5 +132,47 @@ public class VolunteerScreen extends AppCompatActivity {
         });
 
     }
+    private void pushNotification(String Body) {
+        db.collection("Users")
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot Snapshots) {
+
+
+                for (QueryDocumentSnapshot s : Snapshots) {
+                   // Users users = (Users) s.toObject(Users.class);
+                      String token = s.getString("Token");
+                    Data data = new Data("تقديم المساعدة", Body);
+                    Notification notification = new Notification(token, data);
+                    Service service = Api.getBuild().create(Service.class);
+                    service.sendNotifcation(notification).enqueue(new Callback<respance>() {
+                        @Override
+                        public void onResponse(Call<respance> call, Response<respance> response) {
+                            if (response.code() == 200) {
+                                if (response.body().success != 1) {
+
+                                } else {
+                                    ShowEndDialog(VolunteerScreen.this);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<respance> call, Throwable t) {
+                            Toast.makeText(VolunteerScreen.this, t.getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                }
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(VolunteerScreen.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }//end push
 
 }

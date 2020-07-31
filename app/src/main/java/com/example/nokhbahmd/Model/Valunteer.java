@@ -1,4 +1,4 @@
-package com.example.nokhbahmd.classes;
+package com.example.nokhbahmd.Model;
 
 public class Valunteer {
     private String nom,prenom,phone,service;

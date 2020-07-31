@@ -1,4 +1,6 @@
-package com.example.nokhbahmd.Notification;
+package com.example.nokhbahmd.Notifications;
+
+import com.example.nokhbahmd.Model.Notification;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,7 +14,6 @@ public interface Service {
                     "Authorization:key=AAAAQyXH7Ho:APA91bF9NkOBGozD0rHrJ7osvElh3ZfHyd4SLNeEmYcX-Xn1Ik29HqdwQZFyS5UgyoPgWqn9UfDc6pOVujvT8OS71FEdtzUChU3ERhxGoOZyWP5kOHgHFUmTnSo5TfdK2elppiXf7L-A"
             }
     )
-
-    @POST("fcm/send")
-    Call<Void> sendNotifcation(@Body NotificationSender body);
+    @POST("/fcm/send")
+    Call<respance> sendNotifcation(@Body Notification body);
 }
