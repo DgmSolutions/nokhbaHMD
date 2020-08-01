@@ -57,4 +57,9 @@
     <string name="errorMssg">حدث خطأ يرجى المحاولة مرة أخرى</string>
     <string name="dev_info">معلومات عن المطور </string>
     <string name="about_us">من نحن</string>
+    <string name="checkConx">يرجى التحقق من اتصال الإنترنت الخاص بك من فضلك</string>
+    <!--*******************************Notification************************************-->
+    <string name="channal_id">to_panel</string>
+    <string name="channal_dsc">demande service</string>
+    <string name="channal_nom">demande service Notification</string>
 </resources>
