@@ -252,6 +252,8 @@
                         android:hint="اكتب احتياجك هنا"
                         android:inputType="textMultiLine"
                         android:scrollbars="vertical"
+                        android:overScrollMode="always"
+                        android:scrollbarStyle="insideInset"
                         android:verticalScrollbarPosition="left" />
                 </com.google.android.material.textfield.TextInputLayout>
 

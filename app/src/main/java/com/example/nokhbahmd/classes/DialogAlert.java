@@ -2,8 +2,10 @@ package com.example.nokhbahmd.classes;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.nokhbahmd.MainActivity;
 import com.example.nokhbahmd.R;
 import com.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import com.shreyaspatil.MaterialDialog.MaterialDialog;
@@ -20,6 +22,8 @@ public class DialogAlert {
                     @Override
                     public void onClick(com.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
                         dialogInterface.dismiss();
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
                     }
                 })
                 .build();

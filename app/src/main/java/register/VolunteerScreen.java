@@ -131,8 +131,8 @@ public class VolunteerScreen extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        ShowEndDialog(VolunteerScreen.this);
                         progressDialog.dismiss();
+                        ShowEndDialog(VolunteerScreen.this);
                         pushNotification(valunteer.getService());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -164,7 +164,7 @@ public class VolunteerScreen extends AppCompatActivity {
                                 if (response.body().success != 1) {
 
                                 } else {
-                                    ShowEndDialog(VolunteerScreen.this);
+                                    //else show dialog
                                 }
                             }
                         }

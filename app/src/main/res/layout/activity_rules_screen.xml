@@ -86,7 +86,13 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
+                android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/covid4" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                app:srcCompat="@drawable/covid1" />
         </LinearLayout>
 
 

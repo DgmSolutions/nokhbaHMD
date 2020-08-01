@@ -17,6 +17,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -98,6 +99,20 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
         phone_number = findViewById(R.id.phone_number);
         covid_number = findViewById(R.id.covid_num);
         desc_help = findViewById(R.id.desc_help);
+        desc_help.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (desc_help.hasFocus()) {
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (motionEvent.getAction() & MotionEvent.ACTION_MASK){
+                        case MotionEvent.ACTION_SCROLL:
+                            view.getParent().requestDisallowInterceptTouchEvent(false);
+                            return true;
+                    }
+                }
+                return false;
+            }
+        });
         //radio button groupe
         covid_you = (RadioGroup) findViewById(R.id.covid_you);
        covid_family = (RadioGroup) findViewById(R.id.covid_family);
@@ -152,7 +167,6 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                          if(nom.matches(pattrenString) || nom.matches(arabicPatren)){
                              if(prenom.matches(pattrenString) || prenom.matches(arabicPatren)){
                                  if(phone.matches(phonePattren)){
-
                                      progressDialog = new ProgressDialog(HelpScreen.this);
                                      progressDialog.setCancelable(false);
                                      progressDialog.setMessage("يرجى الانتظار ...");
@@ -206,8 +220,6 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                 }else{
                     PermissionLocation();
                 }
-
-
 
             }
         });
@@ -291,10 +303,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                             }
                             break;
                         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-
                             break;
-
-
                     }
                 }
             }
@@ -305,9 +314,8 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
-                        ShowEndDialog(HelpScreen.this);
                         progressDialog.dismiss();
+                        ShowEndDialog(HelpScreen.this);
                         pushNotification(help.getService());
 
                     }
@@ -339,9 +347,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                            if (response.code() == 200) {
                                if (response.body().success != 1) {
 
-                               } else {
-                                   ShowEndDialog(HelpScreen.this);
-                               }
+                               } // else show dialog
                            }
                        }
                        @Override
