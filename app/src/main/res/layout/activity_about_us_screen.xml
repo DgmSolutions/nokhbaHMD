@@ -127,9 +127,51 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/pray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/privacy_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:text="Privacy Policy"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    />
+                <TextView
+                    android:id="@+id/terms_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo"
+                    android:text="Terms and Conditions"
+                    android:textSize="16sp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/black"
+                    />
+                <TextView
+                    android:id="@+id/website_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:fontFamily="@font/cairo"
+                    android:text="Nokhba Website"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    />
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>

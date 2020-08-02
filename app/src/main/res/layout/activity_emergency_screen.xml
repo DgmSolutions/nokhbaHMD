@@ -74,7 +74,7 @@
             android:textSize="40dp"
             android:gravity="center"
             android:layout_margin="10dp"
-            android:text="0671483234"
+            android:text="@string/phone_covid_number"
             android:background="@drawable/round_layout_gris"/>
 
 <LinearLayout
