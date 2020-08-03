@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -25,6 +26,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.nokhba.nokhbahmd.Model.Data;
 import com.nokhba.nokhbahmd.Model.Notification;
 import com.nokhba.nokhbahmd.Notifications.Api;
@@ -147,7 +151,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                  String phone = phone_number.getText().toString().trim();
                  String cnum=covid_number.getText().toString().trim();
                  String desc=desc_help.getText().toString();
-                 desc=desc.replaceAll("( )+", " ");
+
                 int checked =covid_you.getCheckedRadioButtonId();
                 choix = (RadioButton) findViewById(checked);
                 int check =covid_family.getCheckedRadioButtonId();
@@ -169,22 +173,40 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                                      progressDialog.show();
                                      //get localisation and insert data
                                      switch (fchoix.getId()){
+
                                          case R.id.non:
-                                             getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,desc,"0");
+                                             FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                                 @Override
+                                                 public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                                     if(task.isSuccessful()){
+                                                         String to = task.getResult().getToken();
+                                                         final String des=desc.replaceAll("( )+", " ");
+                                                         getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,des,"0",to);
+
+                                                     }else{
+                                                         Toast.makeText(HelpScreen.this,"token not finding",Toast.LENGTH_LONG).show();
+                                                     }
+                                                 }
+                                             });
+
                                              break;
                                          case R.id.oui:
-                                             getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,desc,cnum);
+                                             FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                                 @Override
+                                                 public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                                     if(task.isSuccessful()){
+                                                         String to = task.getResult().getToken();
+                                                         final String des=desc.replaceAll("( )+", " ");
+                                                         getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,des,cnum,to);
+
+                                                     }else{
+                                                         Toast.makeText(HelpScreen.this,"token not finding",Toast.LENGTH_LONG).show();
+                                                     }
+                                                 }
+                                             });
+
                                              break;
                                      }
-                                         //get localisation and insert data
-                                         switch (fchoix.getId()) {
-                                             case R.id.non:
-                                                 getCurrentLocation(nom, prenom, phone, Ycovide, Fcovid, drop, desc, "0");
-                                                 break;
-                                             case R.id.oui:
-                                                 getCurrentLocation(nom, prenom, phone, Ycovide, Fcovid, drop, desc, cnum);
-                                                 break;
-                                         }
 
                                  }else{
                                      new SnackBar().SnackBarMessage(linear,getString(R.string.phoneformat), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));
@@ -231,7 +253,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
     }
 
     //get location method
-    private void getCurrentLocation(String n,String p,String h,String yc,String fc,String drop,String d ,String cnum){
+    private void getCurrentLocation(String n,String p,String h,String yc,String fc,String drop,String d ,String cnum,String to){
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(3000);
@@ -257,8 +279,9 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                                 Map<String, Double> localisation = new HashMap<>();
                                 localisation.put("latitude",latitude);
                                 localisation.put("longtitude",longtitude);
-                                Help help =new Help(n,p,h,yc,fc,drop,d,Integer.parseInt(cnum),Datetime.getDateTime(),localisation);
-                               SaveData(help);
+                                Help help =new Help(n,p,h,yc,fc,drop,d,Integer.parseInt(cnum),Datetime.getDateTime(),localisation,to);
+                                SaveData(help);
+
 
                             }
 
@@ -324,6 +347,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
         });
 
     }//end seve data
+
     private void pushNotification(String Body){
        db.collection("Users")
                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

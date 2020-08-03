@@ -3,7 +3,7 @@ package com.nokhba.nokhbahmd.Model;
 import java.util.Map;
 
 public class Help {
-    private String nom,prenom,phone,covid_you,Fcovid,service,desc,date;
+    private String nom,prenom,phone,covid_you,Fcovid,service,desc,date,Token;
     private int numCovide;
     private Map<String,Double> localisation;
 
@@ -12,7 +12,7 @@ public class Help {
     }
 
 
-    public Help(String nom, String prenom, String phone, String covid_you, String fcovid, String service, String desc, int numCovide, String date, Map<String,Double> loc) {
+    public Help(String nom, String prenom, String phone, String covid_you, String fcovid, String service, String desc, int numCovide, String date, Map<String,Double> loc,String Token) {
         this.nom = nom;
         this.prenom = prenom;
         this.phone = phone;
@@ -23,6 +23,15 @@ public class Help {
         this.numCovide = numCovide;
         this.date = date;
         this.localisation=loc;
+        this.Token=Token;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
     }
 
     public Map<String, Double> getLocalisation() {

@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.nokhba.nokhbahmd.Model.Data;
 import com.nokhba.nokhbahmd.Model.Notification;
 import com.nokhba.nokhbahmd.Notifications.Api;
@@ -86,9 +90,22 @@ public class VolunteerScreen extends AppCompatActivity {
                                       progressDialog.setCancelable(false);
                                       progressDialog.setMessage("يرجى الانتظار ...");
                                       progressDialog.show();
+                                      FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                          @Override
+                                          public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                              if(task.isSuccessful()){
+                                                  String to = task.getResult().getToken();
 
-                                          Valunteer valunteer = new Valunteer(nom, prenom, phone, drop, Datetime.getDateTime());
-                                          SaveData(valunteer);
+                                                  Valunteer valunteer = new Valunteer(nom, prenom, phone, drop, Datetime.getDateTime(),to);
+                                                  SaveData(valunteer);
+
+                                              }else{
+                                                  Toast.makeText(VolunteerScreen.this,"token not finding",Toast.LENGTH_LONG).show();
+                                              }
+                                          }
+                                      });
+
+
 
                                   }else {
                                       new SnackBar().SnackBarMessage(linear,getString(R.string.serviceType), Snackbar.LENGTH_SHORT,getResources().getColor(R.color.Eblack));

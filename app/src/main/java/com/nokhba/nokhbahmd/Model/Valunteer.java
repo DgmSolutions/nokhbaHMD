@@ -1,18 +1,27 @@
 package com.nokhba.nokhbahmd.Model;
 
 public class Valunteer {
-    private String nom,prenom,phone,service;
+    private String nom,prenom,phone,service,Token;
     private String date;
 
     public Valunteer() {
     }
 
-    public Valunteer(String nom, String prenom, String phone, String service, String date) {
+    public Valunteer(String nom, String prenom, String phone, String service, String date,String Token) {
         this.nom = nom;
         this.prenom = prenom;
         this.phone = phone;
         this.service = service;
         this.date = date;
+        this.Token =Token;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
     }
 
     public String getNom() {
