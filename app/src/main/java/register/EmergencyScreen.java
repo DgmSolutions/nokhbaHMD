@@ -7,13 +7,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
-import com.example.nokhbahmd.R;
+import com.nokhba.nokhbahmd.R;
 
 public class EmergencyScreen extends AppCompatActivity {
     final String permissionToCall = Manifest.permission.CALL_PHONE;

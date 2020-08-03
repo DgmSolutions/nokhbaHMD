@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nokhbahmd">
+    package="com.nokhba.nokhbahmd">
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
-        android:name=".Notifications.app"
+        android:name="com.nokhba.nokhbahmd.Notifications.app"
         android:allowBackup="true"
         android:icon="@drawable/n_logo"
         android:label="@string/app_name"
@@ -20,9 +20,9 @@
         <activity android:name="register.RulesScreen" />
         <activity android:name="register.HelpScreen" />
         <activity android:name="register.AboutUsScreen" />
-        <activity android:name=".BoardingScreen" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name="com.nokhba.nokhbahmd.BoardingScreen" />
+        <activity android:name="com.nokhba.nokhbahmd.MainActivity" />
+        <activity android:name="com.nokhba.nokhbahmd.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,7 @@
             android:resource="@array/preloaded_fonts" />
         <!--notification-->
         <service
-            android:name=".Notifications.NotificationRecieve"
+            android:name="com.nokhba.nokhbahmd.Notifications.NotificationRecieve"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

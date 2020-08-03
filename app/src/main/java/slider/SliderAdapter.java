@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.nokhbahmd.R;
+import com.nokhba.nokhbahmd.R;
 
 public class SliderAdapter extends PagerAdapter {
 

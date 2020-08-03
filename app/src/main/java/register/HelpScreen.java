@@ -6,7 +6,6 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -15,7 +14,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,19 +25,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.nokhbahmd.Model.Data;
-import com.example.nokhbahmd.Model.Notification;
-import com.example.nokhbahmd.Model.Users;
-import com.example.nokhbahmd.Notifications.Api;
-import com.example.nokhbahmd.Notifications.Service;
-import com.example.nokhbahmd.Notifications.respance;
-import com.example.nokhbahmd.R;
-import com.example.nokhbahmd.classes.Datetime;
-import com.example.nokhbahmd.Model.Help;
-import com.example.nokhbahmd.classes.SnackBar;
+import com.nokhba.nokhbahmd.Model.Data;
+import com.nokhba.nokhbahmd.Model.Notification;
+import com.nokhba.nokhbahmd.Notifications.Api;
+import com.nokhba.nokhbahmd.Notifications.Service;
+import com.nokhba.nokhbahmd.Notifications.respance;
+import com.nokhba.nokhbahmd.R;
+import com.nokhba.nokhbahmd.classes.Datetime;
+import com.nokhba.nokhbahmd.Model.Help;
+import com.nokhba.nokhbahmd.classes.SnackBar;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.common.internal.ServiceSpecificExtraArgs;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -69,8 +65,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.nokhbahmd.classes.CheckConx.isConnected;
-import static com.example.nokhbahmd.classes.DialogAlert.ShowEndDialog;
+import static com.nokhba.nokhbahmd.classes.CheckConx.isConnected;
+import static com.nokhba.nokhbahmd.classes.DialogAlert.ShowEndDialog;
 
 public class HelpScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , EasyPermissions.PermissionCallbacks{
 

@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.nokhbahmd.R;
+import com.nokhba.nokhbahmd.R;
 
 public class AboutUsScreen extends AppCompatActivity {
 
@@ -19,18 +19,20 @@ public class AboutUsScreen extends AppCompatActivity {
         findViewById(R.id.privacy_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Browse("https://nokhbahmd.com/Privacy_Policy.php");
             }
         });
         findViewById(R.id.terms_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Browse("https://nokhbahmd.com/Terms_and_Conditions.php");
 
             }
         });
         findViewById(R.id.website_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Browse("https://nokhbahmd.com/");
 
             }
         });

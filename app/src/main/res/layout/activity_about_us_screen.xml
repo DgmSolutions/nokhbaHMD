@@ -133,38 +133,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/privacy_id"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cairo"
-                    android:text="Privacy Policy"
+                    android:gravity="center"
+                    android:text="@string/privacy_policy"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     />
                 <TextView
                     android:id="@+id/terms_id"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cairo"
-                    android:text="Terms and Conditions"
+                    android:gravity="center"
+                    android:text="@string/terms_conditions"
                     android:textSize="16sp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
                     android:textColor="@android:color/black"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+
                     />
                 <TextView
                     android:id="@+id/website_id"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:fontFamily="@font/cairo"
-                    android:text="Nokhba Website"
+                    android:text="@string/nokhba_website"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     />
 
 

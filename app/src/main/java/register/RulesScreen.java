@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.nokhbahmd.R;
+import com.nokhba.nokhbahmd.R;
 
 public class RulesScreen extends AppCompatActivity {
 
