@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nokhba.nokhbahmd">
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!-- android 10-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- android 10 -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
-        android:name="com.nokhba.nokhbahmd.Notifications.app"
+        android:name=".Notifications.app"
         android:allowBackup="true"
         android:icon="@drawable/n_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/n_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="register.EmergencyScreen"></activity>
+        <activity android:name="register.NotificationScreen"></activity>
+        <activity android:name="register.EmergencyScreen" />
         <activity android:name="register.VolunteerScreen" />
         <activity android:name="register.RulesScreen" />
         <activity android:name="register.HelpScreen" />
         <activity android:name="register.AboutUsScreen" />
-        <activity android:name="com.nokhba.nokhbahmd.BoardingScreen" />
-        <activity android:name="com.nokhba.nokhbahmd.MainActivity" />
-        <activity android:name="com.nokhba.nokhbahmd.SplashScreen">
+        <activity android:name=".BoardingScreen" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,16 +33,16 @@
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-        <!--notification-->
+            android:resource="@array/preloaded_fonts" /> <!-- notification -->
         <service
-            android:name="com.nokhba.nokhbahmd.Notifications.NotificationRecieve"
+            android:name=".Notifications.NotificationRecieve"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/new_logo" />
@@ -57,7 +58,6 @@
         <meta-data
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
-
     </application>
 
 </manifest>

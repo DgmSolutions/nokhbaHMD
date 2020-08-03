@@ -21,6 +21,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 import register.AboutUsScreen;
 import register.EmergencyScreen;
 import register.HelpScreen;
+import register.NotificationScreen;
 import register.RulesScreen;
 import register.VolunteerScreen;
 
@@ -57,6 +58,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, EmergencyScreen.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.notification_id).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotificationScreen.class);
                 startActivity(intent);
             }
         });

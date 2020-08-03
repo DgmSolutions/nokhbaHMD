@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import slider.SliderAdapter;
+import Adapter.SliderAdapter;
 
 public class BoardingScreen extends AppCompatActivity {
 
