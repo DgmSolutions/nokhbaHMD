@@ -21,7 +21,7 @@ import com.nokhba.nokhbahmd.Model.Data;
 import com.nokhba.nokhbahmd.Model.Notification;
 import com.nokhba.nokhbahmd.Notifications.Api;
 import com.nokhba.nokhbahmd.Notifications.Service;
-import com.nokhba.nokhbahmd.Notifications.respance;
+import com.nokhba.nokhbahmd.Notifications.response;
 import com.nokhba.nokhbahmd.R;
 import com.nokhba.nokhbahmd.classes.Datetime;
 import com.nokhba.nokhbahmd.classes.SnackBar;
@@ -170,9 +170,9 @@ public class VolunteerScreen extends AppCompatActivity {
                     Data data = new Data("تقديم المساعدة", Body);
                     Notification notification = new Notification(token, data);
                     Service service = Api.getBuild().create(Service.class);
-                    service.sendNotifcation(notification).enqueue(new Callback<respance>() {
+                    service.sendNotifcation(notification).enqueue(new Callback<response>() {
                         @Override
-                        public void onResponse(Call<respance> call, Response<respance> response) {
+                        public void onResponse(Call<response> call, Response<response> response) {
                             if (response.code() == 200) {
                                 if (response.body().success != 1) {
 
@@ -183,7 +183,7 @@ public class VolunteerScreen extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<respance> call, Throwable t) {
+                        public void onFailure(Call<response> call, Throwable t) {
                             Toast.makeText(VolunteerScreen.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
                         }

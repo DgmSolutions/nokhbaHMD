@@ -1,5 +1,5 @@
 package com.nokhba.nokhbahmd.Notifications;
 
-public class respance {
+public class response{
     public int success;
 }

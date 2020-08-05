@@ -15,5 +15,5 @@ public interface Service {
             }
     )
     @POST("/fcm/send")
-    Call<respance> sendNotifcation(@Body Notification body);
+    Call<response> sendNotifcation(@Body Notification body);
 }
