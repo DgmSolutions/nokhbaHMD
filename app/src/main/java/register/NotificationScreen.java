@@ -45,7 +45,7 @@ public class NotificationScreen extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView = findViewById(R.id.RecyclerView_id);
         SharedPreferences sharedPrefs = getSharedPreferences("data", MODE_PRIVATE);
-        if (sharedPrefs.contains("phone")) {
+
         String p= sharedPrefs.getString("phone", "");
 
 
@@ -75,7 +75,7 @@ public class NotificationScreen extends AppCompatActivity {
                     alertDialog.show();
                 }
             });
-        }
+
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
