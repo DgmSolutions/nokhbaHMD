@@ -45,6 +45,7 @@ private void showNotification( Context context,String title, String body){
             .setStyle(new NotificationCompat.BigTextStyle()
             .bigText(body))
             .setContentIntent(intentTask(context))
+            .addAction(R.drawable.new_logo,"اقرأ",intentTask(context))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setCategory(NotificationCompat.CATEGORY_ALARM);
 
