@@ -1,11 +1,29 @@
 package com.nokhba.nokhbahmd.Model;
 
 public class Data {
-    private String  title,body,date;
+    private String  title;
+    private String body;
+    private String date;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    private String phone;
 
     public Data(String title, String body) {
         this.title = title;
         this.body = body;
+    }
+
+    public Data(String title, String body, String date) {
+        this.title = title;
+        this.body = body;
+        this.date = date;
     }
 
     public Data() {

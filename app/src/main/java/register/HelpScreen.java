@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -180,6 +181,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                                                      if(task.isSuccessful()){
                                                          String to = task.getResult().getToken();
                                                          final String des=desc.replaceAll("( )+", " ");
+                                                         saveData(phone);
                                                          getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,des,"0",to);
 
                                                      }else{
@@ -196,6 +198,7 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
                                                      if(task.isSuccessful()){
                                                          String to = task.getResult().getToken();
                                                          final String des=desc.replaceAll("( )+", " ");
+                                                         saveData(phone);
                                                          getCurrentLocation(nom,prenom,phone,Ycovide,Fcovid,drop,des,cnum,to);
 
                                                      }else{
@@ -436,5 +439,13 @@ public class HelpScreen extends AppCompatActivity implements NavigationView.OnNa
 
         GpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         return GpsStatus;
+    }
+    public void saveData(String p) {
+        SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("phone",p );
+        editor.apply();
+        Toast.makeText(this, "مرحبا بك", Toast.LENGTH_SHORT).show();
+
     }
 }

@@ -46,13 +46,12 @@ public class RecyclerAdapter extends FirestoreRecyclerAdapter<Data,RecyclerAdapt
     class NotificationHolder extends RecyclerView.ViewHolder {
 
 
-        private TextView not_title, not_msg, not_date, not_count;
+        private TextView not_title, not_date, not_count;
 
         public NotificationHolder(@NonNull View itemView) {
             super(itemView);
 
             not_title = itemView.findViewById(R.id.TitletextView);
-            not_msg = itemView.findViewById(R.id.MsgtextView);
             not_date = itemView.findViewById(R.id.DatetextView);
             not_count = itemView.findViewById(R.id.countTextView);
             itemView.setOnClickListener(new View.OnClickListener() {

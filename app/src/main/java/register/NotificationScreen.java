@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
@@ -40,31 +42,40 @@ public class NotificationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_notification_screen);
         not =db.collection("Data");
         progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
         recyclerView = findViewById(R.id.RecyclerView_id);
-        Query q=not.orderBy("date", Query.Direction.DESCENDING);
-        FirestoreRecyclerOptions<Data> options =new FirestoreRecyclerOptions.Builder<Data>()
-                .setQuery(q,Data.class)
-                .build();
-        adapter = new RecyclerAdapter(options);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(NotificationScreen.this));
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
-        progressBar.setVisibility(View.GONE);
+        SharedPreferences sharedPrefs = getSharedPreferences("data", MODE_PRIVATE);
+        if (sharedPrefs.contains("phone")) {
+        String p= sharedPrefs.getString("phone", "");
 
-        adapter.setClick(new RecyclerAdapter.ItemClick() {
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                Data obj=documentSnapshot.toObject(Data.class);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(NotificationScreen.this);
-                builder.setCancelable(true)
-                        .setMessage(obj.getBody());
+            Query q = not.orderBy("date", Query.Direction.DESCENDING);
+            Query query=not.whereEqualTo("phone",p);
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
-        });
+            FirestoreRecyclerOptions<Data> options = new FirestoreRecyclerOptions.Builder<Data>()
+                   // .setQuery(query, Data.class)
+                    .setQuery(query,Data.class)
+                    .build();
+            adapter = new RecyclerAdapter(options);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(NotificationScreen.this));
+            recyclerView.setAdapter(adapter);
+            progressBar.setVisibility(View.GONE);
+
+            adapter.setClick(new RecyclerAdapter.ItemClick() {
+                @Override
+                public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                    Data obj = documentSnapshot.toObject(Data.class);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NotificationScreen.this);
+                    builder.setCancelable(true)
+                            .setMessage(obj.getBody());
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            });
+        }
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
