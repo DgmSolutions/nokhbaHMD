@@ -61,11 +61,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
-        findViewById(R.id.notification_id).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.invite_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, NotificationScreen.class);
                 startActivity(intent);
+            }
+        });
+        findViewById(R.id.share_id).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                share_app();
             }
         });
         findViewById(R.id.about_id).setOnClickListener(new View.OnClickListener() {
@@ -176,5 +182,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-
+    //share app
+    public void share_app(){
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_SUBJECT,"Partager NokhbaHmd");
+        String applink = "https://nokhbahmd.com/";
+        share.putExtra(Intent.EXTRA_TEXT,applink);
+        startActivity(Intent.createChooser(share,"Partager NokhbaHmd"));
+    }
 }

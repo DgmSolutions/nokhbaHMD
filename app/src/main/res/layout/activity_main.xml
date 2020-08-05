@@ -87,8 +87,8 @@
                 android:layout_marginRight="10dp"
                 style="@style/Widget.MaterialComponents.Button">
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/problem"
                     android:layout_gravity="center"/>
 
@@ -111,8 +111,8 @@
                 android:layout_gravity="center"
                 style="@style/Widget.MaterialComponents.Button">
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/volunteer"
                     android:layout_gravity="center"/>
                 <TextView
@@ -130,7 +130,7 @@
             android:orientation="horizontal"
             android:layout_marginBottom="10dp">
             <LinearLayout
-                android:id="@+id/notification_id"
+                android:id="@+id/invite_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -141,11 +141,12 @@
                 android:layout_marginRight="10dp"
                 style="@style/Widget.MaterialComponents.Button"
                 >
+
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/notification"
-                    android:layout_gravity="center"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/notification" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -166,11 +167,12 @@
                 android:layout_gravity="center"
                 style="@style/Widget.MaterialComponents.Button"
                 >
+
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ambulance"
-                    android:layout_gravity="center"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ambulance" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -187,14 +189,23 @@
             android:orientation="horizontal">
             <LinearLayout
                 android:id="@+id/about_id"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:backgroundTint="@color/cardview_light_background"
                 android:gravity="right"
-                android:orientation="horizontal"
-                android:padding="10dp"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:layout_marginRight="10dp"
                 style="@style/Widget.MaterialComponents.Button"
                 >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/n_logo" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -204,14 +215,36 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:textSize="16sp" />
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/n_logo"
-                    android:layout_gravity="center"/>
-
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/share_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cardview_light_background"
+                android:padding="15dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                style="@style/Widget.MaterialComponents.Button"
+                >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/shareapp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/cairo"
+                    android:text="@string/help7"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
 
         </LinearLayout>
 
